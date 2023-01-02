@@ -12,6 +12,11 @@ interface RankedNetplayProfile {
   dailyGlobalPlacement: number | null;
   dailyRegionalPlacement: number | null;
   characters: CharacterStats[];
+  continent: string;
+}
+
+interface ExtraPlayerData {
+  countryCode: string;
 }
 
 export interface Player {
@@ -21,4 +26,5 @@ export interface Player {
   };
   rankedNetplayProfile: RankedNetplayProfile
   oldRankedNetplayProfile?: RankedNetplayProfile // populated separately
+  extraData?: ExtraPlayerData; // populated separately
 }
