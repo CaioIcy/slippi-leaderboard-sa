@@ -53,7 +53,7 @@ export function Row({ player }: Props) {
   const totalGames = player.rankedNetplayProfile.characters.reduce((acc, val)=> acc + val.gameCount, 0);
   const rankChange = getRankChange(player);
   const ratingChange = getRatingChange(player);
-  const countryCode = player.extraData?.countryCode || "je";
+  const countryCode = player.extraData?.countryCode || "";
 
   return (
     <tr className={`${playerRank.bgClass} border-separate border-spacing-2 border-b-2 border-gray-600`} >
@@ -65,12 +65,12 @@ export function Row({ player }: Props) {
       <td className="text-gray-100 md:px-6 md:py-4 p-1 whitespace-nowrap text-center overflow-hidden md:max-w-full max-w-[7rem] text-elipses">
         <div className="md:text-xl text-sm max-w-xs text-gray-300">
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <img
+            { countryCode && <img
               src={`https://flagcdn.com/${countryCode}.svg`}
               alt={`${countryCode} flag`}
               width={24}
               style={{"margin": "0 4px 0 0"}}
-            />
+            /> }
             {player.displayName}
           </div>
         </div>

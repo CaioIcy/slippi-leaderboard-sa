@@ -15,7 +15,7 @@ interface RankedNetplayProfile {
   continent: string;
 }
 
-interface ExtraPlayerData {
+export interface ExtraPlayerData {
   countryCode: string;
 }
 
