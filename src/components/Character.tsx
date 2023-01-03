@@ -2,6 +2,10 @@ import React from 'react';
 import * as ReactDOM from 'react-dom'; // needed by tooltip
 import ReactDOMServer from 'react-dom/server';
 
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+
 import { CharacterStats } from '../lib/player';
 import BowserIcon from '../../images/characters/bowser_default.png';
 import DkIcon from '../../images/characters/dk_default.png';
@@ -32,14 +36,15 @@ import ZeldaIcon from '../../images/characters/zelda_default.png';
 import UnknownIcon from '../../images/characters/unknown.png';
 
 import { CircularProgressbarWithChildren, buildStyles  } from 'react-circular-progressbar';
-import { Tooltip } from 'react-tooltip';
 import 'react-circular-progressbar/dist/styles.css';
-import 'react-tooltip/dist/react-tooltip.css'
+
+// import CircularProgress from '@mui/material/CircularProgress';
 
 interface Props {
-  id: string,
-  totalGames: number,
-  stats: CharacterStats,
+  id: string;
+  totalGames: number;
+  stats: CharacterStats;
+  small?: boolean;
 }
 
 const characterNameToIcon = new Map([
@@ -71,31 +76,61 @@ const characterNameToIcon = new Map([
   ['ZELDA', ZeldaIcon]
 ]);
 
-export function Character({ id, totalGames, stats }: Props) {
+export function Character({ id, totalGames, stats, small }: Props) {
   const icon = characterNameToIcon.get(stats.character) ?? UnknownIcon
   const percentage = 100*(stats.gameCount / totalGames)
   const charId = stats.character + id
-  const percentString = `${Number(percentage.toFixed(2))}%`
-  const tooltip = ReactDOMServer.renderToString(
-    <>
-      <div>
-        {stats.gameCount} {stats.gameCount > 1 ? 'games': 'game'}
-      </div>
-      <div>{percentString}</div>
-    </>
-  )
-  return (<>
-  <div className="p-0.5" id={charId} data-tooltip-html={tooltip}>
-    <CircularProgressbarWithChildren 
-      className="md:h-12 md:w-12 h-4 w-4"
-      value={percentage}
-      styles={buildStyles({
-        strokeLinecap: 'butt',
-	  		pathColor: 'rgb(22 163 74)'
-      })}>
-      <img className="md:h-8 md:w-8 h-3 w-3" src={icon} />
-    </CircularProgressbarWithChildren>
-  </div>
-  <Tooltip anchorId={charId} />
-  </>)
+  const humanCharName = stats.character.toLowerCase().split("_").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" ");
+  const tooltipString = `${humanCharName} ${Number(percentage.toFixed(2))}%`
+
+  const child = <Box>
+    { small && <Avatar
+      src={icon}
+      sx={{
+        width: '16px',
+        height: '16px',
+        alignItems: "center",
+        justifyContent: "center",
+        m: '2px',
+      }}
+    /> }
+
+    { !small && <Box
+      id={charId}
+      sx={{
+        maxWidth: '40px',
+        maxHeight: '40px',
+        m: '4px',
+      }}>
+      <CircularProgressbarWithChildren 
+        value={percentage}
+        strokeWidth={12}
+        styles={buildStyles({
+          strokeLinecap: 'butt',
+          pathColor: '#2ECC40',
+          trailColor: '#50525A',
+        })}>
+        <Avatar
+          src={icon}
+          sx={{
+            width: '50%',
+            height: '50%',
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        />
+      </CircularProgressbarWithChildren>
+    </Box> }
+  </Box>
+
+  return (
+    <Tooltip
+      disableFocusListener
+      disableTouchListener
+      placement="bottom"
+      title={tooltipString}
+    >
+      { child }
+    </Tooltip>
+  );
 }

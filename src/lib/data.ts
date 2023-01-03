@@ -1,703 +1,1141 @@
 import { ExtraPlayerData } from './player';
 
-/*
+const ALL_CODES = `
+AAC#133
+ABC#214
+ABC#455
+ABCD#397
+ABU#457
 ACAB#640
+ACE#815
+ACRO#987
+ADHD#873
 ADTT#185
+AEGO#747
+AFK#601
+AG#193
+AGCL#661
 AISE#145
+AJU#490
 AKNO#691
+ALE#324
+ALFA#502
 ALOR#511
+ALPC#328
+AMID#502
 AMID#505
+AMNE#860
+ANDR#473
+ANON#329
+ANTZ#466
+APM#541
+APOS#207
+ARAR#370
 ARSN#291
+ARTH#655
+ASD#268
+ASHE#169
 ASHE#748
+ATMN#951
+AUTS#475
+BASH#297
+BASI#775
+BATO#651
+BBRA#179
+BEAN#532
+BEDG#585
+BEGG#795
+BELI#321
 BEN#778
+BERN#850
+BEYA#610
 BIRA#683
+BLAC#569
+BLAC#850
+BLOO#689
 BLOO#748
+BLTZ#975
 BLUE#824
 BOB#520
 BONG#300
+BORI#451
+BOT#290
+BOU#722
 BRAT#840
 BRIC#920
+BRU#729
+BRUN#593
 BSDA#510
 BYXN#310
 BZR#824
+CAIO#157
 CAIO#966
+CALA#160
 CALU#204
+CAMI#121
+CAMI#847
 CAN#654
+CAPI#828
+CAX#692
 CCJ#802
 CEFE#488
 CG#191
+CHAM#306
+CHAN#758
+CHAPE#1
+CHAR#356
+CHAT#140
+CHCK#438
+CHEX#712
+CHIG#907
+CHIL#316
+CHIM#675
+CHOR#190
 CHPA#675
+CHU#543
+CHUG#325
+CHUP#776
+CHUY#187
+CIMO#365
+CLIT#201
+CLON#707
 CLWN#583
 COCK#563
 COCK#940
+COCO#161
 CODY#690
+COFO#131
+COIT#112
+COJI#593
+COMM#942
+COXI#962
+CPA#297
 CPTS#832
 CPU#366
+CRED#718
+CTZ#124
+CU#317
+CUCO#509
+CUMB#708
+DACS#649
+DALA#476
 DALT#799
+DANI#577
+DAPS#185
+DARK#719
+DASH#515
 DAZA#887
+DDD#740
+DDQ#355
+DDUX#251
+DEAD#848
+DEDE#443
+DEEZ#419
+DEEZ#709
 DEIM#907
+DERT#316
+DEW#118
 DEZA#140
+DIEG#637
+DIS#123
 DITT#404
+DOG#500
+DOLF#556
 DON#305
+DON#899
+DOOM#269
+DOT#141
 DOUM#303
+DPLN#854
+DRGS#149
+DRGZ#173
+DRKA#359
+DRKN#267
 DRMARI#0
+DRNK#430
+DRP#684
+DRUT#373
+DS#341
 DSID#627
 DUAL#322
+DUCK#772
+DUDE#212
+DYBL#403
 E#9
+ECCO#542
+ECHE#730
 ED#850
+EDUT#808
+EGAR#415
+EHRO#617
+ELIT#670
+ELMA#709
+ELPI#930
+ELTE#752
+ELTI#205
+ELTI#414
 ELYI#462
+EMSX#384
+ENCD#909
+ENIG#746
+ENZG#570
+EON#833
 ERIC#519
+ERQK#137
+ERRE#217
+ERRI#773
 ESCR#315
+ESE#901
+ETNA#350
+EURO#717
+EXCA#970
 EXCEL#0
+EZR#420
+FABR#220
 FACA#249
+FAKE#746
+FARO#336
+FAT#395
+FATA#138
+FATS#596
 FAUX#488
+FBRO#960
+FELI#363
 FEU#229
+FISH#279
+FISH#528
+FLAN#344
+FLPF#153
+FOCA#414
+FORB#367
+FOUR#539
+FOX#301
+FOX#637
+FOXM#422
+FRAN#434
+FRAN#442
+FRAN#599
+FREE#905
+FROL#168
+FRRC#134
+FTYS#509
+FUDS#833
+FUNM#864
 FUR#392
+FURI#991
+FVCK#985
+FVR#531
 GAB#894
+GABO#423
+GAS#471
 GASM#895
+GDNZ#849
 GEN#134
 GENE#475
+GENO#359
+GFAN#675
+GGCO#151
+GGWP#523
+GIO#409
+GMP#727
 GNZ#143
 GODU#315
+GOGI#728
+GOML#136
+GONZ#355
+GORI#410
+GOST#519
+GOTA#282
 GOVE#420
+GREG#122
 GRIM#492
+GRIM#898
+GRN#316
+GROA#706
+GROL#594
 GUAS#734
+GUCO#518
+GUGU#773
+GUIL#506
 GUIS#749
+GUTO#927
+GUTS#899
+GVEN#552
+GYR#532
+HAAS#627
+HABB#0
 HANS#348
+HAPY#196
+HASI#913
+HAVE#472
+HELL#735
 HEND#168
+HENG#802
+HERO#287
+HIGA#130
 HIGH#103
 HOMER#0
+HOOD#614
 HORK#699
+HR#441
+HUNG#254
 HUNK#582
+HUTA#397
+HYDE#780
 IAM#189
+IFEX#307
+IGU#945
+IGUANA#0
+ILDE#538
+IMSO#697
+INDI#334
+INDI#476
+INMO#350
+INSP#186
+IORI#704
+IORS#485
+IZZI#399
+JECO#611
+JEFF#315
+JENS#613
+JFOI#502
+JOA#790
+JOAB#168
+JOHN#982
+JOKE#564
+JOKE#720
+JORM#827
+JOSU#404
+JOTA#451
+JOXA#420
+JTHO#193
+JUAN#546
+JUAN#576
+JUDI#499
+JULI#345
+JYL#667
+KAI#156
+KAPI#670
+KARU#0
+KARU#965
+KATA#702
+KED#787
+KEK#568
+KENJ#207
+KENJ#707
+KESO#600
+KIDO#883
+KING#199
+KINU#658
+KIW#230
+KIWI#361
+KLAO#360
+KLAS#759
+KLEP#995
+KMAL#924
+KODO#649
+KOMB#236
+KOVC#539
+KT#655
+KURI#169
+KUSA#164
+KUSH#639
+KYDB#804
+LAG#705
+LAIN#465
+LAJ#525
+LAME#997
+LAND#639
+LAND#860
+LEFT#808
+LEMN#124
+LEOL#914
+LERO#711
+LESO#826
+LGZ#942
+LIAR#271
+LIAR#4
+LINC#134
+LINCHO#9
+LINK#641
+LION#361
+LIUK#594
+LIXO#815
+LKT#548
+LLES#419
+LMAO#195
+LMZO#735
+LODS#670
+LOL#807
+LOPI#111
+LORD#675
+LORD#919
+LOVE#323
+LPDE#396
+LUCA#807
+LUCH#785
+LUDE#803
+LUIS#543
+LUIS#745
+LVC#556
+LVIS#562
+LX#386
+LYCA#390
+MACA#167
+MADW#916
+MAE#154
+MALE#687
+MAMR#867
+MANI#365
+MANU#210
+MANV#337
+MART#512
+MASK#169
+MASK#813
+MATA#628
+MATH#859
+MAVE#409
+MAX#625
+MAZU#655
+MCC#823
+MCGU#936
+MCS#356
+MEAT#560
+MEGA#851
+MEKK#464
+MERS#588
+MESA#614
+MF#883
+MFKR#541
+MICH#238
+MICI#573
+MIGU#608
+MIGU#673
+MIGU#771
+MIGUEL#0
+MILA#926
+MING#899
+MINU#570
+MIRO#588
+MIST#508
+MITA#825
+MITO#615
+MITS#384
+MKUN#863
+MN#565
+MOGA#895
+MONK#499
+MOON#449
+MORA#239
+MOZA#752
+MPAR#778
+MRGR#720
+MTTK#310
+MUFA#292
+MURO#881
+MUZA#281
+MV#185
+MVIT#787
+MYCO#237
+MYCO#669
+NABO#210
+NAGI#149
+NAGI#688
+NAGI#875
+NAKA#164
+NAME#472
+NAVO#471
+NAZO#168
+NDJ#132
+NEKO#690
+NEME#567
+NENE#432
+NEO#396
+NEO#545
+NEOM#753
+NEON#210
+NEON#519
+NERO#857
+NESS#961
+NETA#374
+NEWA#506
+NEY#597
+NG#945
+NHOR#369
+NICA#420
+NIHO#256
+NIKY#507
+NINT#411
+NIQO#247
+NIVA#511
+NK#723
+NOHACK#0
+NOT#393
+NOVA#525
+NOWA#627
+NRF#596
+NRKX#873
+NSTY#961
+NUCO#544
+NWO#829
+NYCK#444
+OBI#740
+OBLI#543
+OLAO#704
+OLDN#984
+OLIV#290
+OMEG#293
+OMEN#256
+ONDA#720
+ONET#186
+ONET#253
+ONI#397
+ORSA#964
+OWL#313
+PAI#235
+PALF#606
+PAPA#743
+PAPU#544
+PBL#350
+PEDR#167
+PEEB#437
+PEKO#839
+PENE#847
+PENG#755
+PEPE#298
+PEPE#623
+PFQ#749
+PHON#387
+PIE#167
+PIGL#517
+PIKA#69
+PINK#620
+PINW#206
+PIOL#560
+PIPA#351
+PIPO#914
+PITS#872
+PMTP#250
+PNDA#140
+POKE#481
+POKE#970
+POMF#250
+POMI#963
+POP#0
+POPI#800
+POPP#519
+POTO#895
+POXO#303
+PP#327
+PPQL#176
+PPRS#512
+PRJE#118
+PRNG#913
+PSHI#331
+PT#208
+PTTT#295
+PTTT#603
+PUDD#399
+PUNT#733
+PUSS#532
+PYTH#404
+QBIT#972
+QUAK#657
+QUEB#692
+QUEN#744
+RACK#607
+RADO#902
+RAFA#568
+RAIK#405
+RAMI#639
+RAND#649
+RAPI#279
+RAWR#949
+RAY#678
+RAYO#997
+RECO#921
+REKT#716
+RELL#490
+REM#666
+REP#432
+REVO#620
+RIN#754
+RIX#617
+RNDM#703
+ROBE#327
+ROCH#304
+ROCK#422
+ROCK#718
+ROCK#869
+ROCK#978
+ROKA#123
+ROLO#496
+ROOF#752
+ROTU#977
+RTC#553
+RULO#553
+RUNT#119
+RUSH#859
+RZ#121
+RZR#535
+SABR#624
+SAD#789
+SAK#721
+SAL#360
+SAM#350
+SANS#762
+SANS#828
+SASU#263
+SAUL#235
+SAUR#602
+SEBA#428
+SEDR#258
+SENK#1
+SENK#630
+SHAD#398
+SHAK#437
+SHDW#601
+SHIK#501
+SHOJAM#0
+SHOR#387
+SHRE#818
+SIEG#562
+SIFO#757
+SIGMA#0
+SILV#375
+SIMI#270
+SINX#190
+SKYY#519
+SLIM#450
+SLIM#701
+SMAR#995
+SMIL#144
+SMLE#674
+SMTY#514
+SN#755
+SNAK#777
+SNF#790
+SOLL#996
+SONG#290
+SONO#534
+SOPA#613
+SPAM#942
+SPID#512
+SPPS#476
+SRPZ#254
+SSBI#969
+SSBM#603
+STAR#772
+STON#344
+STOR#347
+SUCC#713
+SUCK#618
+SUKO#430
+SUPE#587
+SWED#147
+SYN#798
+SYRO#479
+TATI#812
+TAU#542
+TEWA#266
+TFCO#798
+TGJ#635
+THEB#386
+THEO#523
+TIA#322
+TIAG#305
+TITO#657
+TKR#747
+TMI#350
+TOBA#232
+TOMS#377
+TORE#977
+TORU#649
+TOSC#669
+TOXC#638
+TOXU#520
+TPOZ#564
+TPOZ#69
+TRAP#195
+TRIC#357
+TRJF#247
+TROY#657
+TRV#477
+TRYF#720
+TRZ#166
+TUNG#838
+TUPI#140
+TXR#205
+TYLE#706
+UNKN#438
+URKM#796
+USUM#957
+UTY#537
+VASH#335
+VECC#942
+VECE#171
+VEET#437
+VEET#989
+VESH#623
+VIC#772
+VICA#572
+VINS#130
+VINY#842
+VITO#638
+VLOR#403
+VODK#140
+VRUM#309
+VSM#110
+WACH#163
+WALK#593
+WARI#512
+WARI#784
+WAST#766
+WATE#276
+WESI#889
+WITO#231
+WOLF#646
+WOOP#700
+WORI#459
+WRNK#877
+WUPP#983
+XABY#636
+XD#448
+XXX#187
+YEAH#507
+YENF#121
+YEYO#234
+YIPY#245
+YODA#189
+YOME#483
+YOST#410
+YOUS#751
+YUFF#585
+YUFU#762
+YUWU#415
+ZAG#814
+ZAPB#499
+ZART#545
+ZBTK#838
+ZEN#425
+ZERA#938
+ZIGI#576
+ZIM#353
+ZMG#139
+ZNDR#921
+ZOIO#289
+ZURA#627
+ZZ#737
+`
+
+const RANKED_CODES = `
+ADTT#185
+AISE#145
+AKNO#691
+AMID#505
+BLAC#850
+BLUE#824
+BOB#520
+BRAT#840
+CAIO#966
+COCK#940
+DRMARI#0
+DSID#627
+E#9
+ELYI#462
+FRAN#434
+GNZ#143
+GOVE#420
+GRN#316
+HEND#168
+HOMER#0
+HUNK#582
 IGUANA#0
 ILDE#538
 IZZI#399
 JENS#613
 JOXA#420
-JUAN#576
 JUDI#499
-KATA#702
 KLAO#360
-KT#655
-KUSA#164
 LAIN#465
-LAJ#525
-LESO#826
-LGZ#942
 LINCHO#9
-LIXO#815
-LOL#807
 LPDE#396
 LUCA#807
-LUDE#803
-LX#386
-MACA#167
-MAMR#867
-MANV#337
 MASK#169
 MAVE#409
 MAZU#655
 MCS#356
-MEGA#851
 MICI#573
-MIGU#608
-MING#899
-MIRO#588
-MITS#384
 MKUN#863
-MONK#499
-MOON#449
-MTTK#310
-MURO#881
-MV#185
-NAGI#149
-NAGI#688
-NAKA#164
-NAZO#168
+MUZA#281
 NDJ#132
 NEKO#690
 NEOM#753
 NIVA#511
-NK#723
 NOHACK#0
-NRKX#873
-NYCK#444
 OLDN#984
-OWL#313
-PAI#235
-PAPU#544
-PEDR#167
-PFQ#749
-PHON#387
-PNDA#140
-POMF#250
-POP#0
+PITS#872
 POXO#303
 PPRS#512
-PRNG#913
-QUAK#657
-QUEN#744
+PRJE#118
 RACK#607
+RAFA#568
 RAIK#405
-RAND#649
-REKT#716
-REM#666
+RIX#617
 ROCK#422
-ROKA#123
+ROTU#977
 RULO#553
-SAL#360
+SASU#263
 SENK#1
-SENK#630
 SHOJAM#0
-SKYY#519
-SLIM#701
-SSBM#603
-SUCK#618
-SWED#147
 TEWA#266
-TKR#747
 TOBA#232
-TOMS#377
-TOSC#669
 TOXC#638
 TPOZ#69
 TXR#205
 UNKN#438
-VECC#942
 VINS#130
 VITO#638
-WARI#512
-WAST#766
-WOLF#646
+WALK#593
 WOOP#700
-WORI#459
-YEAH#507
 ZAG#814
-ZOIO#289
-*/
+`
+
+const OTHER_REGION_CODES =`
+EXCEL#0
+DOLF#556
+KATA#702
+ZURA#627
+CPA#297
+YOST#410
+ALOR#511
+HOOD#614
+ECHE#730
+POP#0
+CHEX#712
+WUPP#983
+BERN#850
+`
+
+
 const data: Record<string, ExtraPlayerData> = {
   "ACAB#640": {
-    countryCode: "br",
+    subregion: "br",
   },
   "ADTT#185": {
     countryCode: "bo",
   },
   "AISE#145": {
-    countryCode: "br",
+    subregion: "br",
   },
   "AKNO#691": {
-    countryCode: "cl",
-  },
-  "ALOR#511": {
-    countryCode: "",
+    subregion: "cl",
   },
   "AMID#505": {
     countryCode: "pe",
   },
   "ARSN#291": {
-    countryCode: "br",
-  },
-  "ASHE#748": {
-    countryCode: "",
-  },
-  "BEN#778": {
-    countryCode: "",
+    subregion: "br",
   },
   "BIRA#683": {
-    countryCode: "br",
+    subregion: "br",
   },
-  "BLOO#748": {
-    countryCode: "",
+  "BLAC#850": {
+    subregion: "cl",
   },
   "BLUE#824": {
     countryCode: "ar",
   },
   "BOB#520": {
-    countryCode: "br",
-  },
-  "BONG#300": {
-    countryCode: "",
+    subregion: "br",
   },
   "BRAT#840": {
-    countryCode: "cl",
-  },
-  "BRIC#920": {
-    countryCode: "",
-  },
-  "BSDA#510": {
-    countryCode: "",
+    subregion: "cl",
   },
   "BYXN#310": {
-    countryCode: "",
-  },
-  "BZR#824": {
-    countryCode: "",
+    subregion: "cl",
   },
   "CAIO#966": {
-    countryCode: "br",
-  },
-  "CALU#204": {
-    countryCode: "",
-  },
-  "CAN#654": {
-    countryCode: "",
-  },
-  "CCJ#802": {
-    countryCode: "",
-  },
-  "CEFE#488": {
-    countryCode: "",
-  },
-  "CG#191": {
-    countryCode: "",
-  },
-  "CHPA#675": {
-    countryCode: "",
+    subregion: "br",
   },
   "CLWN#583": {
-    countryCode: "br",
+    subregion: "br",
   },
   "COCK#563": {
-    countryCode: "br",
+    subregion: "br",
   },
-  "COCK#940": {
-    countryCode: "",
-  },
-  "CODY#690": {
-    countryCode: "",
-  },
-  "CPTS#832": {
-    countryCode: "",
-  },
-  "CPU#366": {
-    countryCode: "",
-  },
-  "DALT#799": {
-    countryCode: "",
-  },
-  "DAZA#887": {
-    countryCode: "",
+  "CUCO#509": {
+    subregion: "cl",
   },
   "DEIM#907": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "DEZA#140": {
-    countryCode: "br",
-  },
-  "DITT#404": {
-    countryCode: "",
-  },
-  "DON#305": {
-    countryCode: "",
-  },
-  "DOUM#303": {
-    countryCode: "",
+    subregion: "br",
   },
   "DRMARI#0": {
-    countryCode: "br",
+    subregion: "br",
+    tag: "caioicy",
   },
   "DSID#627": {
-    countryCode: "",
-  },
-  "DUAL#322": {
-    countryCode: "",
+    subregion: "cl",
   },
   "E#9": {
-    countryCode: "br",
-  },
-  "ED#850": {
-    countryCode: "",
+    subregion: "br",
   },
   "ELYI#462": {
-    countryCode: "cl",
-  },
-  "ERIC#519": {
-    countryCode: "",
+    subregion: "cl",
   },
   "ESCR#315": {
-    countryCode: "",
+    subregion: "cl",
   },
-  "EXCEL#0": {
-    countryCode: "",
-  },
-  "FACA#249": {
-    countryCode: "",
-  },
-  "FAUX#488": {
-    countryCode: "",
-  },
-  "FEU#229": {
-    countryCode: "",
-  },
-  "FUR#392": {
-    countryCode: "",
+  "FRAN#434": {
+    countryCode: "ve",
   },
   "GAB#894": {
-    countryCode: "",
-  },
-  "GASM#895": {
-    countryCode: "",
-  },
-  "GEN#134": {
-    countryCode: "",
-  },
-  "GENE#475": {
-    countryCode: "",
+    subregion: "cl",
   },
   "GNZ#143": {
     countryCode: "ar",
   },
   "GODU#315": {
-    countryCode: "",
-  },
-  "GOVE#420": {
-    countryCode: "",
-  },
-  "GRIM#492": {
-    countryCode: "",
+    subregion: "br",
   },
   "GUAS#734": {
-    countryCode: "cl",
-  },
-  "GUIS#749": {
-    countryCode: "",
+    subregion: "cl",
   },
   "HANS#348": {
-    countryCode: "",
+    subregion: "cl",
   },
   "HEND#168": {
-    countryCode: "br",
+    subregion: "br",
   },
   "HIGH#103": {
-    countryCode: "br",
+    subregion: "br",
   },
   "HOMER#0": {
-    countryCode: "cl",
+    subregion: "cl",
+    ssbmRank: 78,
   },
   "HORK#699": {
-    countryCode: "br",
+    subregion: "br",
   },
   "HUNK#582": {
-    countryCode: "cl",
-  },
-  "IAM#189": {
-    countryCode: "",
+    subregion: "cl",
   },
   "IGUANA#0": {
     countryCode: "uy",
   },
   "ILDE#538": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "IZZI#399": {
-    countryCode: "br",
+    subregion: "br",
   },
   "JENS#613": {
-    countryCode: "cl",
+    subregion: "cl",
+    tag: "HP",
   },
   "JOXA#420": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "JUAN#576": {
-    countryCode: "",
+    subregion: "br",
   },
   "JUDI#499": {
-    countryCode: "br",
-  },
-  "KATA#702": {
-    countryCode: "",
+    subregion: "br",
   },
   "KLAO#360": {
-    countryCode: "cl",
-  },
-  "KT#655": {
-    countryCode: "",
-  },
-  "KUSA#164": {
-    countryCode: "",
+    subregion: "cl",
   },
   "LAIN#465": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "LAJ#525": {
-    countryCode: "br",
+    subregion: "br",
   },
   "LESO#826": {
-    countryCode: "br",
+    subregion: "br",
   },
-  "LGZ#942": {
-    countryCode: "",
+  "LIAR#4": {
+    countryCode: "gt",
   },
   "LINCHO#9": {
-    countryCode: "cl",
+    subregion: "cl",
+    tag: "Lincho",
   },
   "LIXO#815": {
-    countryCode: "br",
-  },
-  "LOL#807": {
-    countryCode: "",
+    subregion: "br",
   },
   "LPDE#396": {
-    countryCode: "",
+    subregion: "br",
   },
   "LUCA#807": {
-    countryCode: "",
+    subregion: "br",
   },
   "LUDE#803": {
-    countryCode: "br",
-  },
-  "LX#386": {
-    countryCode: "",
-  },
-  "MACA#167": {
-    countryCode: "",
-  },
-  "MAMR#867": {
-    countryCode: "",
-  },
-  "MANV#337": {
-    countryCode: "",
-  },
-  "MASK#169": {
-    countryCode: "",
+    subregion: "br",
   },
   "MAVE#409": {
-    countryCode: "cl",
+    subregion: "cl",
+    tag: "Mave",
   },
   "MAZU#655": {
     countryCode: "ar",
   },
   "MCS#356": {
-    countryCode: "br",
-  },
-  "MEGA#851": {
-    countryCode: "",
+    subregion: "br",
   },
   "MICI#573": {
     countryCode: "bo",
   },
-  "MIGU#608": {
-    countryCode: "",
-  },
-  "MING#899": {
-    countryCode: "",
-  },
-  "MIRO#588": {
-    countryCode: "",
-  },
   "MITS#384": {
-    countryCode: "",
+    subregion: "br",
   },
   "MKUN#863": {
     countryCode: "co",
   },
   "MONK#499": {
-    countryCode: "",
-  },
-  "MOON#449": {
-    countryCode: "",
-  },
-  "MTTK#310": {
-    countryCode: "",
+    subregion: "cl",
   },
   "MURO#881": {
-    countryCode: "br",
+    subregion: "br",
   },
-  "MV#185": {
-    countryCode: "",
+  "MUZA#281": {
+    subregion: "cl",
   },
   "NAGI#149": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "NAGI#688": {
-    countryCode: "cl",
-  },
-  "NAKA#164": {
-    countryCode: "",
+    subregion: "cl",
   },
   "NAZO#168": {
-    countryCode: "",
+    subregion: "br",
   },
   "NDJ#132": {
     countryCode: "ve",
+    tag: "NDJ",
+    subregion: "cl",
   },
   "NEKO#690": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "NEOM#753": {
     countryCode: "ve",
   },
   "NIVA#511": {
-    countryCode: "cl",
-  },
-  "NK#723": {
-    countryCode: "",
-  },
-  "NOHACK#0": {
-    countryCode: "",
-  },
-  "NRKX#873": {
-    countryCode: "",
-  },
-  "NYCK#444": {
-    countryCode: "",
+    subregion: "cl",
   },
   "OLDN#984": {
-    countryCode: "",
-  },
-  "OWL#313": {
-    countryCode: "",
+    countryCode: "pe",
   },
   "PAI#235": {
-    countryCode: "",
-  },
-  "PAPU#544": {
-    countryCode: "",
-  },
-  "PEDR#167": {
-    countryCode: "",
-  },
-  "PFQ#749": {
-    countryCode: "",
+    subregion: "br",
   },
   "PHON#387": {
-    countryCode: "",
+    subregion: "br",
   },
-  "PNDA#140": {
-    countryCode: "",
+  "PIPO#914": {
+    subregion: "cl",
+  },
+  "PITS#872": {
+    subregion: "cl",
   },
   "POMF#250": {
-    countryCode: "",
-  },
-  "POP#0": {
-    countryCode: "",
+    countryCode: "ar",
   },
   "POXO#303": {
-    countryCode: "",
+    subregion: "cl",
   },
   "PPRS#512": {
     countryCode: "ar",
   },
-  "PRNG#913": {
-    countryCode: "",
+  "PT#208": {
+    subregion: "cl",
   },
   "QUAK#657": {
-    countryCode: "br",
-  },
-  "QUEN#744": {
-    countryCode: "",
+    subregion: "br",
   },
   "RACK#607": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "RAIK#405": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "RAND#649": {
-    countryCode: "",
+    subregion: "cl",
   },
   "REKT#716": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "REM#666": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "ROCK#422": {
-    countryCode: "cl",
-  },
-  "ROKA#123": {
-    countryCode: "",
+    subregion: "cl",
+    ssbmRank: 98,
   },
   "RULO#553": {
-    countryCode: "cl",
+    subregion: "cl",
   },
-  "SAL#360": {
-    countryCode: "",
+  "SASU#263": {
+    subregion: "br",
   },
   "SENK#1": {
-    countryCode: "cl",
+    subregion: "cl",
   },
-  "SENK#630": {
-    countryCode: "",
-  },
-  "SHOJAM#0": {
-    countryCode: "",
+  "SIFO#757": {
+    subregion: "cl",
   },
   "SKYY#519": {
-    countryCode: "cl",
-  },
-  "SLIM#701": {
-    countryCode: "",
-  },
-  "SSBM#603": {
-    countryCode: "",
+    subregion: "cl",
   },
   "SUCK#618": {
-    countryCode: "",
-  },
-  "SWED#147": {
-    countryCode: "",
+    subregion: "br",
   },
   "TEWA#266": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "TKR#747": {
-    countryCode: "",
+    subregion: "br",
   },
   "TOBA#232": {
-    countryCode: "cl",
-  },
-  "TOMS#377": {
-    countryCode: "",
-  },
-  "TOSC#669": {
-    countryCode: "",
+    subregion: "cl",
   },
   "TOXC#638": {
-    countryCode: "br",
+    subregion: "br",
   },
   "TPOZ#69": {
-    countryCode: "cl",
+    subregion: "cl",
   },
   "TXR#205": {
-    countryCode: "br",
-  },
-  "UNKN#438": {
-    countryCode: "",
-  },
-  "VECC#942": {
-    countryCode: "",
+    subregion: "br",
   },
   "VINS#130": {
     countryCode: "ar",
   },
   "VITO#638": {
-    countryCode: "br",
+    subregion: "br",
+  },
+  "WALK#593": {
+    subregion: "br",
   },
   "WARI#512": {
-    countryCode: "br",
+    subregion: "br",
   },
-  "WAST#766": {
-    countryCode: "",
-  },
-  "WOLF#646": {
-    countryCode: "",
+  "WESI#889": {
+    subregion: "br",
   },
   "WOOP#700": {
-    countryCode: "cl",
+    subregion: "cl",
+    ssbmRank: 78,
   },
-  "WORI#459": {
-    countryCode: "",
-  },
-  "YEAH#507": {
-    countryCode: "",
+  "YUFU#762": {
+    subregion: "br",
   },
   "ZAG#814": {
-    countryCode: "cl",
-  },
-  "ZOIO#289": {
-    countryCode: "",
+    subregion: "cl",
   },
 }
 
@@ -705,8 +1143,22 @@ const playerData = (code: string) => {
   return data[code];
 }
 
-const playerCodes = (): string[] => {
-  return Object.keys(data);
+const rankedPlayerCodes = (): string[] => {
+  return RANKED_CODES.split("\n").filter(c => c);
 }
 
-export { playerData, playerCodes };
+const unrankedPlayerCodes = (): string[] => {
+  const ranked = rankedPlayerCodes();
+  const other = otherRegionPlayerCodes();
+  return allPlayerCodes().filter(x => !ranked.includes(x) && !other.includes(x));
+}
+
+const otherRegionPlayerCodes = (): string[] => {
+  return OTHER_REGION_CODES.split("\n").filter(c => c);
+};
+
+const allPlayerCodes = (): string[] => {
+  return ALL_CODES.split("\n").filter(c => c);
+}
+
+export { playerData, allPlayerCodes, rankedPlayerCodes, unrankedPlayerCodes };

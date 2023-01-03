@@ -1,13 +1,13 @@
 import { RateLimiter } from "limiter"
 
 export const getPlayerData = async (connectCode: string) => {
-  const query = `fragment userProfilePage on User {
-    displayName
-    connectCode {
-          code
-          __typename
+  const query = `
+    fragment userProfilePage on User {
+        displayName
+        connectCode {
+            code
         }
-      rankedNetplayProfile {
+        rankedNetplayProfile {
             id
             ratingOrdinal
             ratingUpdateCount
@@ -17,25 +17,21 @@ export const getPlayerData = async (connectCode: string) => {
             dailyRegionalPlacement
             continent
             characters {
-                    id
-                    character
-                    gameCount
-                    __typename
-                  }
-            __typename
-          }
-      __typename
-  }
+                id
+                character
+                gameCount
+            }
+        }
+    }
 
-  query AccountManagementPageQuery($cc: String!) {
-      getConnectCode(code: $cc) {
+    query AccountManagementPageQuery($cc: String!) {
+        getConnectCode(code: $cc) {
             user {
-                    ...userProfilePage
-                    __typename
-                  }
-            __typename
-          }
-  }`;
+                ...userProfilePage
+            }
+        }
+    }
+  `;
 
   const req = await fetch('https://gql-gateway-dot-slippi.uc.r.appspot.com/graphql', {
     headers: {

@@ -1,6 +1,10 @@
-import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './components/App';
 import './index.css';
 
-render(<App />, document.getElementById('app'));
+const { Settings } = require("luxon");
+Settings.defaultZone = "utc";
+
+const container = document.getElementById('app');
+const root = createRoot(container!);
+root.render(<App />);

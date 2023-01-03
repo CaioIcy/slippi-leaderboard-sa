@@ -1,9 +1,11 @@
+type LeaderboardSubregion = 'cl' | 'br' ;
+
 export interface CharacterStats {
   character: string;
   gameCount: number;
 }
 
-interface RankedNetplayProfile {
+export interface RankedNetplayProfile {
   rank?: number; // populated separately
   ratingOrdinal: number;
   ratingUpdateCount: number;
@@ -16,7 +18,10 @@ interface RankedNetplayProfile {
 }
 
 export interface ExtraPlayerData {
-  countryCode: string;
+  subregion?: LeaderboardSubregion;
+  countryCode?: string;
+  tag?: string;
+  ssbmRank?: number;
 }
 
 export interface Player {
